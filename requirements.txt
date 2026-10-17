@@ -1,6 +1,5 @@
 pyrogram
 tgcrypto
-pytgcalls
+py-tgcalls
 yt-dlp
 aiofiles
-
