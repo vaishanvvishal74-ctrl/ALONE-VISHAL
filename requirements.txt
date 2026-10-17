@@ -1,1 +1,6 @@
+pyrogram
+tgcrypto
+pytgcalls
+yt-dlp
+aiofiles
 
