@@ -24,9 +24,9 @@ app = Client(
     session_string=STRING_SESSION
 )
 
-# Dummy web server to satisfy Render's port requirement
+# Web server to keep Render happy and live
 async def handle(request):
-    return web.Response(text="Bot is running!")
+    return web.Response(text="Bot is running and active!")
 
 async def start_web_server():
     web_app = web.Application()
@@ -36,7 +36,7 @@ async def start_web_server():
     port = int(os.getenv("PORT", 10000))
     site = web.TCPSite(runner, "0.0.0.0", port)
     await site.start()
-    print(f"Dummy web server started on port {port}")
+    print(f"Web server running on port {port}")
 
 @app.on_message(filters.command("play") & filters.group)
 async def play_music(client, message):
@@ -58,15 +58,16 @@ async def play_music(client, message):
             if 'entries' in info:
                 info = info['entries'][0]
             title = info.get('title', 'Audio')
+            duration = info.get('duration_string', 'Unknown')
 
-        await m.edit_text(f"▶️ Song Found: **{title}**\n*(Bot is live and working!)*")
+        await m.edit_text(f"▶️ **Song Found Successfully!**\n\n🎵 **Title:** {title}\n⏱️ **Duration:** {duration}\n\n✅ Bot is fully active on Render!")
     except Exception as e:
         await m.edit_text(f"❌ Error: {e}")
 
 async def main():
     await start_web_server()
     await app.start()
-    print("Voice Chat Bot Safalta Purvak Live Ho Gaya Hai!")
+    print("Telegram Voice Chat Bot Safalta Purvak Live Ho Gaya Hai!")
     await asyncio.Event().wait()
 
 if __name__ == "__main__":
