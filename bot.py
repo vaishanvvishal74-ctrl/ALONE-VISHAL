@@ -1,7 +1,8 @@
 import os
+import asyncio
 from pyrogram import Client, filters
-from pytgcalls import PyTgCalls
-from pytgcalls.types.input_stream import AudioPurl
+from py-tgcalls import PyTgCalls
+from py-tgcalls.types.input_stream import AudioPurl
 import yt_dlp
 
 API_ID = int(os.getenv("API_ID", "34006000"))
@@ -9,7 +10,7 @@ API_HASH = os.getenv("API_HASH", "4450b56f158c1c3529520d35ffe30522")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "8661256440:AAETek4kGNRfULuVuZoB6gU1Dm_ouo7uZDg")
 STRING_SESSION = os.getenv("STRING_SESSION")
 
-# Assistant Client jo VC join karega
+# Pyrogram Client for Voice Chat Assistant
 app = Client(
     "assistant",
     api_id=API_ID,
@@ -50,13 +51,17 @@ async def play_music(client, message):
         await m.edit_text(f"❌ Error: {e}")
 
 async def main():
+    try:
+        loop = asyncio.get_running_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
     await app.start()
     await call_py.start()
-    print("Voice Chat Bot Start Ho Gaya Hai!")
-    import asyncio
-    await asyncio.gather()
+    print("Voice Chat Bot Safalta Purvak Start Ho Gaya Hai!")
+    await asyncio.gather(*[])
 
 if __name__ == "__main__":
-    import asyncio
     asyncio.run(main())
-  
+    
