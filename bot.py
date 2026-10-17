@@ -1,5 +1,10 @@
-import os
 import asyncio
+try:
+    asyncio.get_event_loop()
+except RuntimeError:
+    asyncio.set_event_loop(asyncio.new_event_loop())
+
+import os
 from pyrogram import Client, filters
 from pytgcalls import PyTgCalls
 from pytgcalls.types.input_stream import AudioPurl
@@ -51,16 +56,10 @@ async def play_music(client, message):
         await m.edit_text(f"❌ Error: {e}")
 
 async def main():
-    try:
-        loop = asyncio.get_running_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-
     await app.start()
     await call_py.start()
     print("Voice Chat Bot Safalta Purvak Start Ho Gaya Hai!")
-    await asyncio.gather(*[])
+    await asyncio.Event().wait()
 
 if __name__ == "__main__":
     asyncio.run(main())
