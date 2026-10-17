@@ -13,10 +13,11 @@ import yt_dlp
 
 API_ID = int(os.getenv("API_ID", "34006000"))
 API_HASH = os.getenv("API_HASH", "4450b56f158c1c3529520d35ffe30522")
-BOT_TOKEN = os.getenv("BOT_TOKEN", "8661256440:AAETek4kGNRfULuVuZoB6gU1Dm_ouo7uZDg")
-STRING_SESSION = os.getenv("AQIG4_AARiL9fvIbQ0ZGZULxr6F6eaEkL48kekSVPQ972u4qdPxZMR70MJvCGdOSvL1LPsD9XlU-pLQTiTNgGG6OI6dZtx0FlfgM0tM5pU_7lCJP-OUDMS6WT16jA5tV6F2bOOO-FScWkjtH_OYS_bnriYZKha6zzfBrp-DUveZGSLwx0tcoHiOBZ36cePDFj5_0-9-QeU8oqMxHc-3wAHz_NG0nYTD2OxrDa9E-r2mbsEEAdHhSBoZE6jQ5MrC2Qf4rq_nbvyMR17SUQHKQA0CbsfjURey7rGaFl4dw72bqkNRcvzbi2v6pcEodR0mHZa85Zr4w6N4iU9diXpTeXtSa1Bu9MgAAAAGT_Pb2AA")
 
-# Assistant Client
+# Yahan "APNA_STRING_SESSION_YAHAN_PASTE_KAREIN" ki jagah apna pyrogram string session paste kar dein
+STRING_SESSION = os.getenv("STRING_SESSION", "APNA_STRING_SESSION_YAHAN_PASTE_KAREIN")
+
+# Assistant Client with String Session
 app = Client(
     "assistant",
     api_id=API_ID,
@@ -24,7 +25,7 @@ app = Client(
     session_string=STRING_SESSION
 )
 
-# Web server to keep Render happy and live
+# Web server to keep Render live
 async def handle(request):
     return web.Response(text="Bot is running and active!")
 
@@ -60,7 +61,7 @@ async def play_music(client, message):
             title = info.get('title', 'Audio')
             duration = info.get('duration_string', 'Unknown')
 
-        await m.edit_text(f"▶️ **Song Found Successfully!**\n\n🎵 **Title:** {title}\n⏱️ **Duration:** {duration}\n\n✅ Bot is fully active on Render!")
+        await m.edit_text(f"▶️ **Song Found Successfully!**\n\n🎵 **Title:** {title}\n⏱️ **Duration:** {duration}\n\n✅ Assistant connected!")
     except Exception as e:
         await m.edit_text(f"❌ Error: {e}")
 
