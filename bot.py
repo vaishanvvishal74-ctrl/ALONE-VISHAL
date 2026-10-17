@@ -1,5 +1,6 @@
 import os
 import asyncio
+from aiohttp import web
 
 # Python 3.14 event loop fix
 try:
@@ -23,6 +24,20 @@ app = Client(
     session_string=STRING_SESSION
 )
 
+# Dummy web server to satisfy Render's port requirement
+async def handle(request):
+    return web.Response(text="Bot is running!")
+
+async def start_web_server():
+    web_app = web.Application()
+    web_app.router.add_get("/", handle)
+    runner = web.AppRunner(web_app)
+    await runner.setup()
+    port = int(os.getenv("PORT", 10000))
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+    print(f"Dummy web server started on port {port}")
+
 @app.on_message(filters.command("play") & filters.group)
 async def play_music(client, message):
     if len(message.command) < 2:
@@ -44,13 +59,14 @@ async def play_music(client, message):
                 info = info['entries'][0]
             title = info.get('title', 'Audio')
 
-        await m.edit_text(f"▶️ Song Found: **{title}**\n*(Cloud deployment successful!)*")
+        await m.edit_text(f"▶️ Song Found: **{title}**\n*(Bot is live and working!)*")
     except Exception as e:
         await m.edit_text(f"❌ Error: {e}")
 
 async def main():
+    await start_web_server()
     await app.start()
-    print("Bot Safalta Purvak Live Ho Gaya Hai!")
+    print("Voice Chat Bot Safalta Purvak Live Ho Gaya Hai!")
     await asyncio.Event().wait()
 
 if __name__ == "__main__":
