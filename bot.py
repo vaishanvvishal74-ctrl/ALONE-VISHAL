@@ -1,8 +1,8 @@
 import os
 import asyncio
 from pyrogram import Client, filters
-from py-tgcalls import PyTgCalls
-from py-tgcalls.types.input_stream import AudioPurl
+from pytgcalls import PyTgCalls
+from pytgcalls.types.input_stream import AudioPurl
 import yt_dlp
 
 API_ID = int(os.getenv("API_ID", "34006000"))
