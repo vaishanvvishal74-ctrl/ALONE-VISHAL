@@ -3,3 +3,4 @@ tgcrypto
 py-tgcalls
 yt-dlp
 aiofiles
+aiohttp
