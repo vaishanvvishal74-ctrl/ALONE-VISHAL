@@ -11,7 +11,7 @@ except RuntimeError:
 from pyrogram import Client, filters
 
 API_ID = int(os.getenv("API_ID", "34006000"))
-API_HASH = os.getenv("API_HASH", "4450b56f158c1c3529520d35ffe30522"))
+API_HASH = os.getenv("API_HASH", "4450b56f158c1c3529520d35ffe30522")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "8661256440:AAETek4kGNRfULuVuZoB6gU1Dm_ouo7uZDg")
 
 app = Client(
